@@ -6,15 +6,36 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    internal abstract class Items
+    abstract class Item
     {
-        string Name;
-        int Price;
-        public abstract void Use();
+        public string Name { get; }
+        public Item(string name) => Name = name;
     }
-    internal class Food : Items 
-    {
 
-    
+    interface IValuable
+    {
+        int Value { get; }
+    }
+
+    class Food : Item, IValuable
+    {
+        public Food() : base("Food") { }
+        public int Value => 2;
+        public void Increasehunger(Sim sim)
+        {
+            int newHunger = (int)(sim.GetHunger() + 20);
+            sim.SetHunger(newHunger);
+        }
+    }
+
+    class NewsPaper : Item, IValuable
+    {
+        public NewsPaper() : base("NewsPaper") { }
+        public int Value => 2;
+        public void Increasehapiness(Sim sim)
+        {
+            int newHapiness = (int)(sim.GetHapiness() + 20);
+            sim.SetHapiness(newHapiness);
+        }
     }
 }

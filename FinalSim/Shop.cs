@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    internal class Shop
+     class Shop
     {
     }
 }

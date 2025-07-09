@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    internal class Sim
+     class Sim
     {
-        string Name;
-        int hp = 100;
-        int hapiness = 100;
-        int hunger = 100;
-        int money;
-        public int energy = 10;
-
-        public Sim(string v1, int v2)
-        {
-        }
+        protected string Name;
+        protected int hp = 100;
+        protected int hapiness = 100;
+        protected int hunger = 100;
+        protected int money ;
+        protected int energy ;
 
         public Sim(string Name, int hp, int hapiness, int hunger, int money, int energy)
         {
@@ -28,6 +24,15 @@ namespace FinalSim
             this.money = money;
             this.energy = energy;
         }
+        public int GetEnergy() => energy;
+        public int SetEnergy(int newEnergy) => energy = newEnergy;
+        public int GetHapiness() => hapiness;
+        public int SetHapiness(int newhapiness) => hapiness = newhapiness;
+        public int GetHunger() => hunger;
+        public int SetHunger(int newhunger) => hunger = newhunger;
+
+        public int getHp() { return hp; }
+
 
         public void SuddenSleep()
         {
@@ -39,6 +44,7 @@ namespace FinalSim
             }
 
         }
+       
         public void sleep()
         {
             if (Sim)
