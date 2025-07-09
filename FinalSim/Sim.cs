@@ -25,29 +25,40 @@ namespace FinalSim
             this.energy = energy;
         }
         public int GetEnergy() => energy;
-        public int SetEnergy(int newEnergy) => energy = newEnergy;
+        public int SetEnergy(int newEnergy) => energy = Math.Clamp(newEnergy, 0, 100);
         public int GetHapiness() => hapiness;
-        public int SetHapiness(int newhapiness) => hapiness = newhapiness;
+        public int SetHapiness(int newhapiness) => hapiness = Math.Clamp(newhapiness, 0, 100);
         public int GetHunger() => hunger;
-        public int SetHunger(int newhunger) => hunger = newhunger;
+        public int SetHunger(int newhunger) => hunger = Math.Clamp(newhunger, 0, 100);
         public int GetMoney() => money;
-
-        public int SetMoney(int newmoney) => money = newmoney ;
-
-        public int getHp() { return hp; }
-
+        public int SetMoney(int newmoney) => money = Math.Clamp(newmoney, 0, 9999); 
+        public int GetHp() => hp;
+        public int SetHp(int newhp) => hp = Math.Clamp(newhp, 0, 100);
 
         public void SuddenSleep()
         {
-            if (energy >= 0)
+            if (energy <= 0)
             {
-                Console.WriteLine("U Fall Asleep and get brought to your bed it costs u 5 money");
+                Console.WriteLine("U Fall Asleep and get brought to your bed it costs u 5 money.");
                 money -= 5;
                 energy = 6;
             }
 
         }
-       
-       
+        public void entertainself()
+        {
+            if (money <= 0) {
+                Console.WriteLine("U entertain yourself with less than safe but free methods");
+                    hapiness += 15;
+                hp -= 15;
+            }
+            else if (money > 0) {
+                Console.WriteLine("u go out and have fun");
+                money -= 15;
+                
+            }
+        }
+
+
     }
 }

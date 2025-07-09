@@ -39,4 +39,16 @@ namespace FinalSim
             sim.SetHapiness(newHapiness);
         }
     }
+    class EnergyDrink : Item, IValuable
+    {
+        public EnergyDrink() : base("Energydrink") { }
+        public int Value => 2;
+        public void IncreaseEnergy (Sim sim)
+        {
+            int newEnergy = (int)(sim.GetEnergy() + 2);
+            sim.SetEnergy(newEnergy);
+            int newHP = (int)(sim.GetHp() + 20);
+            sim.SetHp(newHP);
+        }
+    }
 }

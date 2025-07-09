@@ -16,10 +16,9 @@ namespace FinalSim
         public override void enter(Sim sim)
         {
 
-        int newenergy ;
-            newenergy = sim.GetEnergy;
-            sim.SetEnergy = newenergy;
-    }
+            int newEnergy = (int)(sim.GetEnergy() + 2);
+            sim.SetEnergy(newEnergy);
+        }
     } 
     }
 
