@@ -25,6 +25,7 @@ namespace FinalSim
         {
             int newHunger = (int)(sim.GetHunger() + 20);
             sim.SetHunger(newHunger);
+
         }
     }
 

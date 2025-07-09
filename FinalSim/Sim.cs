@@ -30,6 +30,9 @@ namespace FinalSim
         public int SetHapiness(int newhapiness) => hapiness = newhapiness;
         public int GetHunger() => hunger;
         public int SetHunger(int newhunger) => hunger = newhunger;
+        public int GetMoney() => money;
+
+        public int SetMoney(int newmoney) => money = newmoney ;
 
         public int getHp() { return hp; }
 
@@ -45,11 +48,6 @@ namespace FinalSim
 
         }
        
-        public void sleep()
-        {
-            if (Sim)
-            {
-            }
-        }
+       
     }
 }
