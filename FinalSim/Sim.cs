@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-     class Sim
+    class Sim
     {
         protected string Name;
         protected int hp = 100;
         protected int hapiness = 100;
         protected int hunger = 100;
-        protected int money ;
-        protected int energy ;
+        protected int money;
+        protected int energy;
 
         public Sim(string Name, int hp, int hapiness, int hunger, int money, int energy)
         {
@@ -24,6 +24,8 @@ namespace FinalSim
             this.money = money;
             this.energy = energy;
         }
+        public string GetName() => Name;
+        public void SetName(string newName) => Name = newName;
         public int GetEnergy() => energy;
         public int SetEnergy(int newEnergy) => energy = Math.Clamp(newEnergy, 0, 100);
         public int GetHapiness() => hapiness;
@@ -31,7 +33,7 @@ namespace FinalSim
         public int GetHunger() => hunger;
         public int SetHunger(int newhunger) => hunger = Math.Clamp(newhunger, 0, 100);
         public int GetMoney() => money;
-        public int SetMoney(int newmoney) => money = Math.Clamp(newmoney, 0, 9999); 
+        public int SetMoney(int newmoney) => money = Math.Clamp(newmoney, 0, 9999);
         public int GetHp() => hp;
         public int SetHp(int newhp) => hp = Math.Clamp(newhp, 0, 100);
 
@@ -47,18 +49,71 @@ namespace FinalSim
         }
         public void entertainself()
         {
-            if (money <= 0) {
+            if (money <= 0)
+            {
                 Console.WriteLine("U entertain yourself with less than safe but free methods");
-                    hapiness += 15;
+                hapiness += 15;
                 hp -= 15;
             }
-            else if (money > 0) {
+            else if (money > 0)
+            {
                 Console.WriteLine("u go out and have fun");
                 money -= 15;
-                
+
             }
+        }
+        public void ShowStatus()
+        {
+            Console.WriteLine($"Name: {Name} \n, HP: {hp}\n, Happiness: {hapiness}\n, Hunger: {hunger}\n, Money: {money}\n, Energy: {energy}\n");
         }
 
 
+    }
+    class Backpack
+    {
+        public List<Item> Items { get; private set; } = new List<Item>();
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
+            Console.WriteLine($"Added {item.Name} to backpack.");
+        }
+        public void ShowItems()
+        {
+            if (Items.Count == 0)
+            {
+                Console.WriteLine("Your backpack is empty.");
+            }
+            else
+            {
+                Console.WriteLine("Items in your backpack:");
+                foreach (var item in Items)
+                {
+                    Console.WriteLine($"- {item.Name}");
+                }
+            }
+        }
+        public void UseItem(Item item, Sim sim)
+        {
+            if (item is IValuable valuableItem)
+            {
+                if (item is Food food)
+                {
+                    food.Increasehunger(sim);
+                }
+                else if (item is NewsPaper newspaper)
+                {
+                    newspaper.Increasehapiness(sim);
+                }
+                else if (item is EnergyDrink energyDrink)
+                {
+                    energyDrink.IncreaseEnergy(sim);
+                }
+                Console.WriteLine($"Used {item.Name}. Value: {valuableItem.Value}");
+            }
+            else
+            {
+                Console.WriteLine($"{item.Name} cannot be used.");
+            }
+        }
     }
 }

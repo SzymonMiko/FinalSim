@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-     abstract class Rooms
+    public abstract class Rooms 
     {
-        public abstract void enter();
+        public abstract void Enter(Sim sim); 
     }
     public class Kitchen : Rooms
     {
-
-        public override void enter(Sim sim)
+        public override void Enter(Sim sim)
         {
-
-            int newEnergy = (int)(sim.GetEnergy() + 2);
+            int newEnergy = (int)(sim.GetEnergy() - 1);
             sim.SetEnergy(newEnergy);
         }
-    } 
+    }
     }
 
 

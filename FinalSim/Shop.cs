@@ -7,34 +7,49 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-     class Shop : Rooms
+    class Shop : Rooms
     {
-        public override void enter(Sim sim , Item item)
+        public override void enter(Sim sim, Item item, Backpack backpack)
         {
-            
+
             bool shopping = true;
 
             while (shopping)
             {
-                Console.WriteLine($"Your money: {money}");
-                Console.WriteLine("Buy something: 1 - Food (2 rubies), 2 - Newspaper (2 rubies)");
+                Console.WriteLine($"Your money: {sim.GetMoney}");
+                Console.WriteLine("Buy something: 1 - Food (5 rubies), 2 - Newspaper (5 rubies)");
                 Console.Write("Choose: ");
                 int choice = int.Parse(Console.ReadLine());
 
                 Food Food = new Food();
                 NewsPaper Newspaper = new NewsPaper();
 
-                if (choice == 1 && money >= Food.Value)
+                if (choice == 1 && sim.GetMoney() >= Food.Value)
                 {
-                    money -= Food.Value;
-                    Food.IncreaseBaseDamage((Sim)player, 10.0);
-                    Console.WriteLine($"You bought: {Food.Name}. Hunger: {((Sim)player).GetHunger()}");
+                    Food = new Food();
+                    int newMoney = (int)(sim.GetMoney() - Food.Value);
+                    sim.SetMoney(newMoney);
+                    Food.Increasehunger((Sim)sim);
+                    Console.WriteLine($"You bought: {Food.Name}. Hunger: {((Sim)sim).GetHunger()}");
+                    backpack.AddItem(Food);
                 }
-                else if (choice == 2 && money >= Newspaper.Value)
+                else if (choice == 2 && sim.GetMoney() >= Newspaper.Value)
                 {
-                    money -= Newspaper.Value;
-                    Newspaper.Increasehapiness((Sim)player, 10.0);
-                    Console.WriteLine($"You bought: {Newspaper.Name}. Hapiness: {((Sim)player).GetHapiness()}");
+                    Newspaper = new NewsPaper();
+                    int newMoney = (int)(sim.GetMoney() - Newspaper.Value);
+                    sim.SetMoney(newMoney);
+                    Newspaper.Increasehapiness((Sim)sim);
+                    Console.WriteLine($"You bought: {Newspaper.Name}. Hapiness: {((Sim)sim).GetHapiness()}");
+                    backpack.AddItem(Newspaper);
+                }
+                else if (choice == 3 && sim.GetMoney() >= 2)
+                {
+                    EnergyDrink energyDrink = new EnergyDrink();
+                    int newMoney = (int)(sim.GetMoney() - energyDrink.Value);
+                    sim.SetMoney(newMoney);
+                    energyDrink.IncreaseEnergy((Sim)sim);
+                    Console.WriteLine($"You bought: {energyDrink.Name}. Energy: {((Sim)sim).GetEnergy()}");
+                    backpack.AddItem(energyDrink);
                 }
                 else
                 {
@@ -45,6 +60,7 @@ namespace FinalSim
                 shopping = Console.ReadLine() == "1";
             }
 
-        ((Sim)player).EncounterCompleted();
+        ((Sim)sim).EncounterCompleted();
         }
     }
+}

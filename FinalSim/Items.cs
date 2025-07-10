@@ -20,7 +20,7 @@ namespace FinalSim
     class Food : Item, IValuable
     {
         public Food() : base("Food") { }
-        public int Value => 2;
+        public int Value => 5;
         public void Increasehunger(Sim sim)
         {
             int newHunger = (int)(sim.GetHunger() + 20);
@@ -32,7 +32,7 @@ namespace FinalSim
     class NewsPaper : Item, IValuable
     {
         public NewsPaper() : base("NewsPaper") { }
-        public int Value => 2;
+        public int Value => 5;
         public void Increasehapiness(Sim sim)
         {
             int newHapiness = (int)(sim.GetHapiness() + 20);
@@ -51,4 +51,5 @@ namespace FinalSim
             sim.SetHp(newHP);
         }
     }
+
 }
