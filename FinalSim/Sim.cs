@@ -95,14 +95,17 @@ namespace FinalSim
                 if (item is Food food)
                 {
                     food.Increasehunger(sim);
+                    Items.Remove(food);
                 }
                 else if (item is NewsPaper newspaper)
                 {
                     newspaper.Increasehapiness(sim);
+                    Items.Remove(newspaper);
                 }
                 else if (item is EnergyDrink energyDrink)
                 {
                     energyDrink.IncreaseEnergy(sim);
+                    Items.Remove(energyDrink);
                 }
                 Console.WriteLine($"Used {item.Name}. Value: {valuableItem.Value}");
             }
