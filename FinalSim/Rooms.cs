@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    public abstract class Rooms 
+   
+    public abstract class Rooms
     {
-        public abstract void Enter(Sim sim); 
+        public abstract void Enter(Sim sim, Item item, Backpack backpack);
     }
     public class Kitchen : Rooms
     {
-        public override void Enter(Sim sim)
+        public override void Enter(Sim sim, Item item, Backpack backpack)
         {
-            int newEnergy = (int)(sim.GetEnergy() - 1);
+            int newEnergy = (sim.GetEnergy() - 1);
             sim.SetEnergy(newEnergy);
         }
     }
-    }
+
+ }
 
 

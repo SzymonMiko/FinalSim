@@ -4,12 +4,15 @@ namespace FinalSim
 {
     class Program
     {
+        private static Item item;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to FinalSim!");
             Console.WriteLine("Please write your name");
             string name = Console.ReadLine();
-            Sim sim = new Sim(name, 100, 100, 100, 100, 100);
+            Sim sim = new Sim(name);
+            Backpack backpack = new Backpack();
             Console.WriteLine($"Welcome {sim.GetName} to the FinalSim!");
             Console.WriteLine("You can do the following:");
             Console.WriteLine("1. Go to the shop");
@@ -24,7 +27,7 @@ namespace FinalSim
                 {
                     case "1":
                         Shop shop = new Shop();
-                        shop.enter(sim, null);
+                        shop.Enter(sim , item, backpack);
                         break;
                     case "2":
                         // Implement room logic here

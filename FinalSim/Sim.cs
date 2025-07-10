@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    class Sim
+    public class Sim
     {
         protected string Name;
         protected int hp = 100;
         protected int hapiness = 100;
         protected int hunger = 100;
-        protected int money;
-        protected int energy;
+        protected int money = 0;
+        protected int energy = 8;
 
-        public Sim(string Name, int hp, int hapiness, int hunger, int money, int energy)
+        public Sim(string Name)
         {
             this.Name = Name;
-            this.hp = hp;
-            this.hapiness = hapiness;
-            this.hunger = hunger;
-            this.money = money;
-            this.energy = energy;
+            
         }
         public string GetName() => Name;
         public void SetName(string newName) => Name = newName;
@@ -69,7 +65,7 @@ namespace FinalSim
 
 
     }
-    class Backpack
+    public class Backpack
     {
         public List<Item> Items { get; private set; } = new List<Item>();
         public void AddItem(Item item)

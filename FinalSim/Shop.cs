@@ -9,15 +9,17 @@ namespace FinalSim
 {
     class Shop : Rooms
     {
-        public override void enter(Sim sim, Item item, Backpack backpack)
+        public override void Enter(Sim sim, Item item, Backpack backpack)
         {
+            int newEnergy = (sim.GetEnergy() - 1);
+            sim.SetEnergy(newEnergy);
 
             bool shopping = true;
 
             while (shopping)
             {
                 Console.WriteLine($"Your money: {sim.GetMoney}");
-                Console.WriteLine("Buy something: 1 - Food (5 rubies), 2 - Newspaper (5 rubies)");
+                Console.WriteLine("Buy something: 1 - Food (5 money), 2 - Newspaper (5 money), 3 - EnergyDrink (10 money)");
                 Console.Write("Choose: ");
                 int choice = int.Parse(Console.ReadLine());
 
@@ -60,7 +62,7 @@ namespace FinalSim
                 shopping = Console.ReadLine() == "1";
             }
 
-        ((Sim)sim).EncounterCompleted();
+        
         }
     }
 }

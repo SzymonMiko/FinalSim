@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalSim
 {
-    abstract class Item
+    public abstract class Item
     {
         public string Name { get; }
         public Item(string name) => Name = name;
@@ -28,7 +28,6 @@ namespace FinalSim
 
         }
     }
-
     class NewsPaper : Item, IValuable
     {
         public NewsPaper() : base("NewsPaper") { }
