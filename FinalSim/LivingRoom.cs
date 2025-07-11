@@ -10,8 +10,8 @@ namespace FinalSim
     {
         public override void Enter(Sim sim, Item item, Backpack backpack)
         {
-            int newenergy = (sim.GetEnergy() - 1);
-            sim.SetEnergy(newenergy);
+            int newenergy = (sim.Energy - 1);
+            sim.Energy = newenergy;
             Console.WriteLine("You entered the living room.");
             Console.WriteLine("You can relax here to increase your happiness.");
             Console.WriteLine("1. Relax");
@@ -19,7 +19,7 @@ namespace FinalSim
             string choice = Console.ReadLine();
             if (choice == "1")
             {
-                sim.entertainself();
+                sim.Entertainself();
                 sim.ShowStatus();
             }
         }
