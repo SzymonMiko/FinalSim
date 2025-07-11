@@ -1,20 +1,19 @@
-﻿using System;
+﻿using FinalSim.Items;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Rooms
 {
     class Shop : Rooms
     {
         public override void Enter(Sim sim, Item item, Backpack backpack)
         {
-            int newenergy = (sim.Energy - 1);
-            sim.Energy = newenergy;
-
-
+            int newenergy = sim.Energy - 1;
+            
             bool shopping = true;
 
             while (shopping)
@@ -23,37 +22,37 @@ namespace FinalSim
                 Console.WriteLine("Buy something: 1 - Food (5 money), 2 - Newspaper (5 money), 3 - EnergyDrink (10 money)");
                 Console.Write("Choose: ");
                 int choice = int.Parse(Console.ReadLine());
-
-                Food food = new Food();
-                NewsPaper newspaper = new NewsPaper();
-
-                if (choice == 1 && sim.Money >= food.Value)
+                sim.ShowStatus();
+                item = choice switch
                 {
-                    food = new Food();
-                    int newmoney = (sim.Money - food.Value);
-                    sim.Money = newmoney;
-                    food.Increase((Sim)sim);
-                    Console.WriteLine($"You bought: {food.Name}. Hunger: {((Sim)sim).Hunger}");
+                    1 => new Food(),
+                    2 => new NewsPaper(),
+                    3 => new EnergyDrink(),
+                };
+           
+                if (choice == 1 && sim.Money >= item.Value)
+                {
+                    sim.Money -= item.Value;
+                    food.Increase(sim);
+                    Console.WriteLine($"You bought: {food.Name}. Hunger: {sim.Hunger}");
                     backpack.AddItem(food);
                     backpack.ShowItems();
                 }
                 else if (choice == 2 && sim.Money >= newspaper.Value)
                 {
-                    newspaper = new NewsPaper();
-                    int newmoney = (sim.Money - newspaper.Value);
-                    sim.Money = newmoney;
-                    newspaper.Increase((Sim)sim);
-                    Console.WriteLine($"You bought: {newspaper.Name}. Hapiness: {((Sim)sim).Hapiness}");
+
+                    sim.Money -= item.Value;
+                    newspaper.Increase(sim);
+                    Console.WriteLine($"You bought: {newspaper.Name}. Hapiness: {sim.Hapiness}");
                     backpack.AddItem(newspaper);
                     backpack.ShowItems();
                 }
                 else if (choice == 3 && sim.Money >= 2)
                 {
-                    EnergyDrink energydrink = new EnergyDrink();
-                    int newmoney = (sim.Money - energydrink.Value);
-                    sim.Money = newmoney;
-                    energydrink.Increase((Sim)sim);
-                    Console.WriteLine($"You bought: {energydrink.Name}. Energy: {((Sim)sim).Energy}");
+
+                    sim.Money -= item.Value;
+                    energydrink.Increase(sim);
+                    Console.WriteLine($"You bought: {energydrink.Name}. Energy: {sim.Energy}");
                     backpack.AddItem(energydrink);
                     backpack.ShowItems();
                 }

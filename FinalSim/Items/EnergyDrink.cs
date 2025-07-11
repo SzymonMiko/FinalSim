@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Items
 {
     class EnergyDrink : Item, IValuable
     {
@@ -13,8 +13,8 @@ namespace FinalSim
         public override void Increase(Sim sim)
         {
 
-            sim.Energy = (sim.Energy + 2);
-            int newhp = (int)(sim.Hp - 10);
+            sim.Energy = sim.Energy + 2;
+            int newhp = sim.Hp - 10;
             sim.Hp = newhp;
         }
     }

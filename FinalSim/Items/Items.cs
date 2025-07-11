@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Items
 {
     public abstract class Item
     {
@@ -17,5 +17,5 @@ namespace FinalSim
     {
         int Value { get; }
     }
-
+    
 }

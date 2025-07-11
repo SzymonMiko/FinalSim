@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalSim.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,18 +37,16 @@ namespace FinalSim
                 if (item is Food food)
                 {
                     food.Increase(sim);
-                    items.Remove(food);
                 }
                 else if (item is NewsPaper newspaper)
                 {
                     newspaper.Increase(sim);
-                    items.Remove(newspaper);
                 }
                 else if (item is EnergyDrink energydrink)
                 {
                     energydrink.Increase(sim);
-                    items.Remove(energydrink);
                 }
+                items.Remove(item); 
                 Console.WriteLine($"Used {item.Name}. Value: {valuableitem.Value}");
             }
             else

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using FinalSim.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Rooms
 {
     public class Kitchen : Rooms
     {
         public override void Enter(Sim sim, Item item, Backpack backpack)
         {
-            int newenergy = (sim.Energy - 1);
+            int newenergy = sim.Energy - 1;
             sim.Equals(newenergy);
 
             Console.WriteLine("You entered the kitchen.");

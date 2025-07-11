@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Items
 {
     class NewsPaper : Item, IValuable
     {
@@ -13,7 +13,7 @@ namespace FinalSim
         public override void Increase(Sim sim)
         {
 
-            sim.Hapiness = (sim.Hapiness + 20);
+            sim.Hapiness = sim.Hapiness + 20;
         }
     }
 }

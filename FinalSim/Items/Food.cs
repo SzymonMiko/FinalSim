@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSim
+namespace FinalSim.Items
 {
     class Food : Item, IValuable
     {
@@ -13,7 +13,7 @@ namespace FinalSim
         public override void Increase(Sim sim)
         {
 
-            sim.Hunger = (sim.Hunger + 20);
+            sim.Hunger = sim.Hunger + 20;
 
 
         }
