@@ -11,6 +11,8 @@ namespace FinalSim.Items
         public string Name { get; }
         public Item(string name) => Name = name;
     public abstract void Increase(Sim sim);
+
+        internal abstract void Remove(Item item);
     }
 
     interface IValuable

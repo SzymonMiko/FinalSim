@@ -13,7 +13,7 @@ namespace FinalSim.Rooms
         public override void Enter(Sim sim, Item item, Backpack backpack)
         {
             int newenergy = sim.Energy - 1;
-            
+
             bool shopping = true;
 
             while (shopping)
@@ -28,44 +28,22 @@ namespace FinalSim.Rooms
                     1 => new Food(),
                     2 => new NewsPaper(),
                     3 => new EnergyDrink(),
+                    _ => null
                 };
-           
-                if (choice == 1 && sim.Money >= item.Value)
-                {
-                    sim.Money -= item.Value;
-                    food.Increase(sim);
-                    Console.WriteLine($"You bought: {food.Name}. Hunger: {sim.Hunger}");
-                    backpack.AddItem(food);
-                    backpack.ShowItems();
-                }
-                else if (choice == 2 && sim.Money >= newspaper.Value)
-                {
 
-                    sim.Money -= item.Value;
-                    newspaper.Increase(sim);
-                    Console.WriteLine($"You bought: {newspaper.Name}. Hapiness: {sim.Hapiness}");
-                    backpack.AddItem(newspaper);
-                    backpack.ShowItems();
-                }
-                else if (choice == 3 && sim.Money >= 2)
+                if (item != null && item is IValuable valuableItem)
                 {
-
-                    sim.Money -= item.Value;
-                    energydrink.Increase(sim);
-                    Console.WriteLine($"You bought: {energydrink.Name}. Energy: {sim.Energy}");
-                    backpack.AddItem(energydrink);
-                    backpack.ShowItems();
-                }
-                else
-                {
-                    Console.WriteLine("Lacking funds or invalid item.");
+                    switch (item)
+                    {
+                        case Food f:backpack.AddItem(f); sim.Money -= valuableItem.Value; break;
+                        case NewsPaper n: backpack.AddItem(n); sim.Money -= valuableItem.Value; break;
+                        case EnergyDrink e: backpack.AddItem(e); sim.Money -= valuableItem.Value; break;
+                    }
                 }
 
                 Console.Write("Buy anything else? 1 = YES / any = NO: ");
                 shopping = Console.ReadLine() == "1";
             }
-
-        
         }
     }
 }

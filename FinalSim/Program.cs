@@ -10,6 +10,7 @@ namespace FinalSim
 
         private static Item item;
 
+        
         static void Main(string[] args)
         {
              
@@ -38,12 +39,14 @@ namespace FinalSim
                         shop.Enter(sim , item, backpack);
                         backpack.ShowItems();
                         break;
-                    case "2":
-                        new LivingRoom();
-                
-                        Console.WriteLine("You entered your room.");
+                    case "2": 
+                        LivingRoom livingRoom = new LivingRoom();
+                        livingRoom.Enter(sim, item, backpack);
                         break;
                     case "3":
+                        running = false;
+                        break;
+                    case "4":
                         running = false;
                         break;
                     default:

@@ -17,5 +17,10 @@ namespace FinalSim.Items
             int newhp = sim.Hp - 10;
             sim.Hp = newhp;
         }
+
+        internal override void Remove(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

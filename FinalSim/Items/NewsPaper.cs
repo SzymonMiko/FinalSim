@@ -15,5 +15,10 @@ namespace FinalSim.Items
 
             sim.Hapiness = sim.Hapiness + 20;
         }
+
+        internal override void Remove(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,16 +15,16 @@ namespace FinalSim.Rooms
             sim.Equals(newenergy);
 
             Console.WriteLine("You entered the kitchen.");
-            Console.WriteLine("You lost energy your energy is" + sim.Energy);
-            Console.WriteLine("You can cook food here to double food effectivenes or just eat food.");
-            Console.WriteLine("1. Cook food");
+            Console.WriteLine("You lost energy your energy is" + sim.Energy + " your backpack contains " +backpack.ShowItems );
+            Console.WriteLine("1. Cook food to double its effectiveness");
             Console.WriteLine("2. Eat food");
             Console.Write("Choose an option: ");
             string choice = Console.ReadLine();
 
             if (choice == "1")
-            { }
-
+            {
+                
+            }
         }
     }
 }

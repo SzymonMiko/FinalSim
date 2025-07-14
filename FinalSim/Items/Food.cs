@@ -10,12 +10,19 @@ namespace FinalSim.Items
     {
         public Food() : base("Food") { }
         public int Value => 5;
+
         public override void Increase(Sim sim)
-        {
+        { 
+            
 
             sim.Hunger = sim.Hunger + 20;
 
 
+        }
+
+        internal override void Remove(Item item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

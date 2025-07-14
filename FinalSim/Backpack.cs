@@ -30,30 +30,12 @@ namespace FinalSim
                 }
             }
         }
-        public void UseItem(Item item, Sim sim)
-        {
-            if (item is IValuable valuableitem)
-            {
-                if (item is Food food)
-                {
-                    food.Increase(sim);
-                }
-                else if (item is NewsPaper newspaper)
-                {
-                    newspaper.Increase(sim);
-                }
-                else if (item is EnergyDrink energydrink)
-                {
-                    energydrink.Increase(sim);
-                }
-                items.Remove(item); 
-                Console.WriteLine($"Used {item.Name}. Value: {valuableitem.Value}");
-            }
-            else
-            {
-                Console.WriteLine($"{item.Name} cannot be used.");
-            }
+        
         }
-    }
-}
+       
+       
+
+        }
+    
+
     

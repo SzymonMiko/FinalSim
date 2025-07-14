@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinalSim.Items;
+using FinalSim.Rooms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,7 @@ namespace FinalSim
         public Sim(string Name)
         {
             this.name = Name;
-            
+
         }
         public string Name { get => name; set => name = value; }
 
@@ -26,18 +28,23 @@ namespace FinalSim
         public int Hapiness { get => hapiness; set => hapiness = Math.Clamp(value, 0, 100); }
         public int Hunger { get => hunger; set => hunger = Math.Clamp(value, 0, 100); }
         public int Money { get => money; set => money = Math.Clamp(value, 0, 100); }
-        public int Hp { get => hp; set => hp = Math.Clamp( value, 0, 100); }
-        
+        public int Hp { get => hp; set => hp = Math.Clamp(value, 0, 100); }
 
-        public void SuddenSleep()
+
+        public void SuddenSleep(LivingRoom livingroom)
         {
             if (energy <= 0)
             {
                 Console.WriteLine("U Fall Asleep and get brought to your bed it costs u 5 money.");
                 money -= 5;
-                energy = 6;
-                
+                energy = 7;
+                livingroom.Enter(this, null, null);
+
             }
+        }
+        public void GoToSleep() {
+        energy += 8;
+
         }
         public void Entertainself()
         {
@@ -59,9 +66,34 @@ namespace FinalSim
         {
             Console.WriteLine($"Name: {name} \n, HP: {hp}\n, Happiness: {hapiness}\n, Hunger: {hunger}\n, Money: {money}\n, Energy: {energy}\n");
         }
+        public void UseItem(Item item, Sim sim)
+        {
+            if (item is IValuable valuableitem)
+            {
+                if (item is Food food)
+                {
+                    food.Increase(sim);
+                }
+                else if (item is NewsPaper newspaper)
+                {
+                    newspaper.Increase(sim);
+                }
+                else if (item is EnergyDrink energydrink)
+                {
+                    energydrink.Increase(sim);
+                }
+                item.Remove(item);
+                Console.WriteLine($"Used {item.Name}. Value: {valuableitem.Value}");
+            }
+            else
+            {
+                Console.WriteLine($"{item.Name} cannot be used.");
+            }
+
+        }
+
+
 
     }
-    
-        
-    }
+}
 
